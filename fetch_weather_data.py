@@ -51,7 +51,7 @@ def get_weather(min_lat, lat_increase, min_lon, lon_increase):
                             print(f"Error: {e}")
 
 
-schedule.every().day.at("17:50").do(get_weather(41,8,-109,7))
+schedule.every().day.at("17:50").do(get_weather(41,5,-109,7))
 
 print("Weather data retrieval started, waiting for scheduler")
 while True:
