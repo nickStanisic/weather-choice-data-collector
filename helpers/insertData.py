@@ -20,11 +20,7 @@ def insertData(weather_data):
         cursor = conn.cursor()
 
         #drop table, if it exists
-        cursor.execute(
-            """ 
-            DROP TABLE IF EXISTS weather;
-            """
-        )
+        cursor.execute("DROP TABLE IF EXISTS weather;")
 
         #create new weather table
         cursor.execute(
