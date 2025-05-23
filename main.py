@@ -1,4 +1,4 @@
-import time
+from datetime import datetime
 import schedule
 from helpers.weatherCall import weatherCall
 from helpers.populateWeatherData import populateWeatherData
@@ -14,12 +14,15 @@ def get_weather(min_lat, lat_increase, min_lon, lon_increase):
                     lon = j + l/8
                     data = weatherCall(lat, lon)
                     populateWeatherData(data, weather_data, lat, lon)            
-    #try to get data into postgresDB
+    #try to get data into DB
     insertData(weather_data)
+    print(f"[{datetime.utcnow()}] ✓ inserted {len(weather_data)} rows")
 
-schedule.every().day.at("17:50").do(get_weather(40,4,-109,7))
-
-print("Weather data retrieval started, waiting for scheduler")
-while True:
-    schedule.run_pending()
-    time.sleep(60)
+if __name__ == "__main__":
+    try:
+        get_weather(40,4,-109,7)
+    except Exception as exc:
+        # Log the stacktrace so Cloud Logging marks the execution failed
+        import traceback, sys
+        traceback.print_exc()
+        sys.exit(1)
