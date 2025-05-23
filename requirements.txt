@@ -1,8 +1,5 @@
-certifi==2024.12.14
-charset-normalizer==3.4.0
-idna==3.10
-psycopg2-binary==2.9.10
-python-dotenv==1.0.1
 requests==2.32.3
-schedule==1.2.2
-urllib3==2.2.3
+python-dotenv==1.0.1
+sqlalchemy==2.0.25
+cloud-sql-python-connector[pg8000]==1.7.0
+pg8000>=1.29.4
